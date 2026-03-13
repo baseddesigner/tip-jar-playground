@@ -130,9 +130,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <div className="flex-1 flex items-start justify-center p-8 gap-8">
+      <div className="flex-1 flex flex-col lg:flex-row items-center lg:items-start justify-center p-4 lg:p-8 gap-4 lg:gap-8">
         {/* 3D Canvas */}
-        <div className="flex-1 max-w-2xl aspect-square bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="w-full lg:flex-1 max-w-2xl aspect-square bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
           <Canvas
             key={cameraKey}
             shadows
@@ -161,7 +161,7 @@ export default function App() {
         </div>
 
         {/* Controls */}
-        <div className="w-72 space-y-5 max-h-[calc(100vh-8rem)] overflow-y-auto pr-1">
+        <div className="w-full lg:w-72 space-y-5 lg:max-h-[calc(100vh-8rem)] overflow-y-auto pr-1 pb-8 lg:pb-0">
           <div>
             <p className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">Demo</p>
             <div className="space-y-1.5">
