@@ -15,9 +15,9 @@ export default function App() {
 
   // Camera
   const [cameraState, setCameraState] = useState<CameraState>({
-    position: [-0.28, 2.22, -1.44],
+    position: [0.26, 2.01, -1.65],
     target: [0, 0.55, 0],
-    zoom: 85,
+    zoom: 250,
   })
   const [appliedCameraState, setAppliedCameraState] = useState<CameraState | undefined>(undefined)
   const [cameraKey, setCameraKey] = useState(0)
@@ -86,9 +86,12 @@ export default function App() {
     setLidOpen(true)
     setTimeout(() => {
       addCoins(1)
-      setTimeout(() => setLidOpen(false), 600)
+      // close lid after coin falls past rim: t = sqrt(2d/g) + buffer
+      const fallDist = Math.max(dropHeight - 1.31, 0.5)
+      const fallMs = Math.sqrt((2 * fallDist) / gravity) * 1000 + 200
+      setTimeout(() => setLidOpen(false), fallMs)
     }, 400)
-  }, [addCoins])
+  }, [addCoins, dropHeight, gravity])
 
   const handleReset = useCallback(() => {
     setCoins([])

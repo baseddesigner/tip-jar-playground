@@ -4,9 +4,9 @@ import { OrthographicCamera, OrbitControls } from "@react-three/drei"
 import * as THREE from "three"
 import type { CameraState } from "../types"
 
-const DEFAULT_POSITION: [number, number, number] = [-0.28, 2.22, -1.44]
+const DEFAULT_POSITION: [number, number, number] = [0.26, 2.01, -1.65]
 const DEFAULT_TARGET: [number, number, number] = [0, 0.55, 0]
-const DEFAULT_ZOOM = 85
+const DEFAULT_ZOOM = 250
 
 export function IsometricCamera({ initialState }: { initialState?: CameraState }) {
   const camRef = useRef<THREE.OrthographicCamera>(null)
@@ -40,7 +40,7 @@ export function CameraControls({ initialState }: { initialState?: CameraState })
       enablePan={false}
       enableZoom={true}
       minZoom={40}
-      maxZoom={250}
+      maxZoom={400}
     />
   )
 }
