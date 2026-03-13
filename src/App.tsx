@@ -82,10 +82,10 @@ export default function App() {
     })
   }, [dropSpread, maxCoins])
 
-  const handleDrop = useCallback(() => {
+  const handleDrop = useCallback((count = 1) => {
     setLidOpen(true)
     setTimeout(() => {
-      addCoins(1)
+      addCoins(count)
       // close lid after coin falls past rim: t = sqrt(2d/g) + buffer
       const fallDist = Math.max(dropHeight - 1.31, 0.5)
       const fallMs = Math.sqrt((2 * fallDist) / gravity) * 1000 + 200
@@ -164,12 +164,23 @@ export default function App() {
           <div>
             <p className="text-xs font-medium text-gray-600 mb-2 uppercase tracking-wide">Demo</p>
             <div className="space-y-1.5">
-              <button
-                onClick={handleDrop}
-                className="w-full py-2 text-xs font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
-              >
-                Drop a coin
-              </button>
+              <div className="flex gap-1.5">
+                <button
+                  onClick={() => handleDrop(1)}
+                  className="flex-1 py-2 text-xs font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
+                >
+                  Drop 1
+                </button>
+                {[10, 20].map((n) => (
+                  <button
+                    key={n}
+                    onClick={() => handleDrop(n)}
+                    className="flex-1 py-2 text-xs font-medium bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
+                  >
+                    Drop {n}
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={handleReset}
                 className="w-full py-2 text-xs font-medium text-gray-600 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors cursor-pointer"
